@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import { MdAdd } from 'react-icons/md';
 import styled from 'styled-components';
 
@@ -37,10 +38,22 @@ const Form = styled.form`
   }
 `;
 
-const TodoInsert = () => {
+const TodoInsert = ({ onInsert }) => {
+  const [value, setvalue] = useState('');
+
+  const onChange = useCallback(e => {
+    setvalue(e.target.value); // input의 value값으로 세팅
+  }, [])
+
+  const onSubmit = useCallback(e => {
+    onInsert(value); // todo.text = input.value
+    setvalue(''); // value값 초기화
+    //새로고침 방지
+    e.preventDefault();
+  }, [onInsert, value]);
   return (
-    <Form>
-      <input type={'text'} placeholder="할일을 입력하세요" />
+    <Form onSubmit={onSubmit}>
+      <input type={'text'} value={value} onChange={onChange} placeholder="할일을 입력하세요" />
       <button type="submit">
         <MdAdd />
       </button>

@@ -19,11 +19,12 @@ const Contents = styled.div`
   background: white;
 `;
 
-const TodoTemplate = ({ children }) => {
+const TodoTemplate = ({ children }) => { //Children props로 태그안의 내용을 불러옴
   return (
     <Todotemplates>
       <AppTitle>일정관리 📝</AppTitle>
       <Contents>{children}</Contents>
+      {/*Children : TodoInsert,TodoList*/}
     </Todotemplates>
   );
 };
