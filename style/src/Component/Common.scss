@@ -1,0 +1,18 @@
+.TodoList {
+  min-height: 320px;
+  max-height: 511px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 0 2rem;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.TodoListItem-virtualized {
+  & + & {
+    border-top: 1px solid #363636;
+  }
+  &:nth-child(even) {
+    background: #fff;
+  }
+}

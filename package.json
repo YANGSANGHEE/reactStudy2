@@ -19,6 +19,8 @@
   "homepage": "https://github.com/YANGSANGHEE/reactstudy2#readme",
   "dependencies": {
     "package.json": "^2.0.1",
-    "react-icon": "^1.0.0"
+    "react-icon": "^1.0.0",
+    "react-virtualized": "^9.22.3",
+    "virtualized": "^0.1.0"
   }
 }

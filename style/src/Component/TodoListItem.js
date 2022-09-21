@@ -1,3 +1,5 @@
+import React from 'react';
+import './Common.css'
 import styled from 'styled-components';
 import cn from 'classnames'
 import {
@@ -7,7 +9,6 @@ import {
 } from 'react-icons/md'
 
 const TodoListItems = styled.div`
-  padding: 1.5rem;
   display: flex;
   align-items: center;
   &:nth-child(even){
@@ -47,16 +48,13 @@ const TodoListItems = styled.div`
       color: #363636;;
     }
   }
-  &+&{
-    border-top: 1px solid #363636;
-  }
 `;
 
-const TodoListItem = ({ todo, onRemove, onToggle }) => { // TodoList로부터 todo,onRemove,onToggle 받아옴
+const TodoListItem = ({ todo, onRemove, onToggle, style }) => { // TodoList로부터 todo,onRemove,onToggle 받아옴
   const { id, text, checked } = todo; // todo 구조분해할당
 
   return (
-    <TodoListItems>
+    <TodoListItems className='TodoListItem-virtualized' style={style}>
       <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
         {/* checked가 true일때 checkbox라는 클래스를 가진다. 클릭이벤트로 onToggle 함수 호출 onToggle이라는 함수의 매개변수를 todo.id로 받음 */}
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
@@ -72,4 +70,4 @@ const TodoListItem = ({ todo, onRemove, onToggle }) => { // TodoList로부터 to
   );
 };
 
-export default TodoListItem
+export default React.memo(TodoListItem);
