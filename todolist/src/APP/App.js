@@ -8,47 +8,60 @@ function App() {
     {
       id: 1,
       text: '투두리스트당',
-      checked: true
+      checked: true,
     },
     {
       id: 2,
       text: '투두리스트당',
-      checked: false
+      checked: false,
     },
     {
       id: 3,
       text: '투두리스트당',
-      checked: false
+      checked: false,
     },
     {
       id: 4,
       text: '투두리스트당',
-      checked: false
+      checked: false,
     },
     {
       id: 5,
       text: '투두리스트당',
-      checked: false
-    }
-  ])
-  const nextId = useRef(6);
-  const onInsert = useCallback(text => {
-    const memoList2 = {
-      id: nextId.current,
-      text,
       checked: false,
-    }
-    nextId.current += 1
-    setMemoList(memoList.concat(memoList2));
-  }, [memoList]);
+    },
+  ]);
+  const nextId = useRef(6);
+  const onInsert = useCallback(
+    (text) => {
+      const memoList2 = {
+        id: nextId.current,
+        text,
+        checked: false,
+      };
+      setMemoList(memoList.concat(memoList2));
+      nextId.current += 1;
+    },
+    [memoList]
+  );
 
-  const onRemove = useCallback(id => {
-    setMemoList(memoList.filter(value => value.id !== id))
-  }, [memoList]);
+  const onRemove = useCallback(
+    (id) => {
+      setMemoList(memoList.filter((value) => value.id !== id));
+    },
+    [memoList]
+  );
 
-  const onToggle = useCallback(id => {
-    setMemoList(memoList.map(value => value.id === id ? { ...value, checked: !value.checked } : value));
-  }, [memoList])
+  const onToggle = useCallback(
+    (id) => {
+      setMemoList(
+        memoList.map((value) =>
+          value.id === id ? { ...value, checked: !value.checked } : value
+        )
+      );
+    },
+    [memoList]
+  );
   return (
     <Template>
       <Insert onInsert={onInsert} />
